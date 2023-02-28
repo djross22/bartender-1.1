@@ -170,6 +170,13 @@ void drive(std::string barcodefile,  // original read file
 
 int main(int argc,char* argv[])
 {
+    printf("%d\n",argc);
+    for(int i = 0; i < argc; i++)
+	{
+		printf("%s\n", argv[i]);
+	}
+	printf("\n");
+	
     Timer* t = new realTimer(cout);
     if (argc < 3) {
 	std::cerr << "Please use bartender_single_com script instead! "
@@ -182,33 +189,52 @@ int main(int argc,char* argv[])
     string outprefix(argv[2]);
     size_t freq_cutoff = 1;
     
-    if(argc >= 4)
+    if(argc >= 4) {
         freq_cutoff = atoi(argv[3]);
+		printf("freq_cutoff ");
+		printf("%s\n", argv[3]);
+	}
 
     double zvalue = 4.0;
     if (argc >= 5) {
         zvalue = atof(argv[4]);
+		printf("zvalue ");
+		printf("%s\n", argv[4]);
     }
 
     size_t seedlen = 5;
-    if(argc >= 6)
+    if(argc >= 6) {
         seedlen = atoi(argv[5]);
+		printf("seedlen ");
+		printf("%s\n", argv[5]);
+	}
     
     size_t step = seedlen;
-    if (argc >= 7)
-	step = atoi(argv[6]);
+    if (argc >= 7) {
+    	step = atoi(argv[6]);
+		printf("step ");
+		printf("%s\n", argv[6]);
+	}
     
     size_t num_threads = 1;
-    if (argc >= 8)
-	num_threads = atoi(argv[7]);
+    if (argc >= 8) {
+	    num_threads = atoi(argv[7]);
+		printf("num_threads ");
+		printf("%s\n", argv[7]);
+	}
     
     size_t distance = 2;
-    if (argc >= 9)
-	distance = atoi(argv[8]);
+    if (argc >= 9) {
+	    distance = atoi(argv[8]);
+		printf("distance ");
+		printf("%s\n", argv[8]);
+	}
     
     StrandDirection direction = FORWARD_DIRECTION;
     if (argc >= 10) {
         int dir = atoi(argv[9]);
+		printf("dir ");
+		printf("%s\n", argv[9]);
         assert(dir == 0 || dir == 1);
         if (dir == 0) {
             direction = BOTH_DIRECTION;
@@ -218,17 +244,25 @@ int main(int argc,char* argv[])
     TESTSTRATEGY pool = TWOPROPORTIONUNPOOLED;
     if (argc >= 11) {
         pool = static_cast<TESTSTRATEGY>(atoi(argv[10]));
+		printf("pool ");
+		printf("%s\n", argv[10]);
     }
 
     double entropy_threshold = 0.46;
     if (argc >= 12) {
         entropy_threshold = atof(argv[11]);
+		printf("entropy_threshold ");
+		printf("%s\n", argv[11]);
     }
     
     size_t maximum_centers = 4;
     if (argc >= 13) {
         maximum_centers = atoi(argv[12]);
+		printf("maximum_centers ");
+		printf("%s\n", argv[12]);
     }
+	
+	printf("\n");
     
     drive(sequencefile,
           freq_cutoff,
